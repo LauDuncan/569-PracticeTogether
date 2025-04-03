@@ -43,7 +43,7 @@ struct RoleSelectionTemplate: SpatialTemplate {
     let elements: [any SpatialTemplateElement] = [
         // Red team (Defib):
 //        .seat(position: .app.offsetBy(x: -2.5, z: 3.5), role: Role.redTeam),
-        .seat(position: .app.offsetBy(x: -3.0, z: 3.0), role: Role.redTeam),
+        .seat(position: .app.offsetBy(x: -2.0, z: 2.5), role: Role.redTeam),
 //        .seat(position: .app.offsetBy(x: -3.5, z: 2.5), role: Role.redTeam),
         
         // Starting positions:
@@ -58,7 +58,7 @@ struct RoleSelectionTemplate: SpatialTemplate {
         
         // Blue team (Airway):
 //        .seat(position: .app.offsetBy(x: 2.5, z: 3.5), role: Role.blueTeam),
-        .seat(position: .app.offsetBy(x: 3.0, z: 3.0), role: Role.blueTeam),
+        .seat(position: .app.offsetBy(x: 2.0, z: 2.5), role: Role.blueTeam),
 //        .seat(position: .app.offsetBy(x: 3.5, z: 2.5), role: Role.blueTeam)
     ]
 }

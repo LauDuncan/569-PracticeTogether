@@ -21,6 +21,9 @@ enum MenuButtonType {
 
 // MARK: - Content View
 struct SceneSwitchView: View {
+    @Environment(AppModel.self) var appModel
+    @Environment(\.physicalMetrics) var converter
+
     // State to track the currently selected button
     @State private var selectedButtonIndex: Int? = nil
     
@@ -68,6 +71,9 @@ struct SceneSwitchView: View {
             }
         }
         .frame(width: 340, height: 600)
+        .rotation3DEffect(Rotation3D(angle: .degrees(20), axis: .x), anchor: .center)
+        .rotation3DEffect(Rotation3D(angle: .degrees(270), axis: .y), anchor: .center)
+        .offset(y: -converter.convert(1.1, from: .meters))
     }
     
     // MARK: - Button Selection Logic

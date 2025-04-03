@@ -38,7 +38,8 @@ struct GameSpace: Scene {
             }
         }
         .onChange(of: appModel.sessionController?.game.stage, updateImmersiveSpaceState)
-        .immersionStyle(selection: immersionStyleBinding, in: .progressive)
+        .immersionStyle(selection: .constant(.full), in: .full)
+        // .immersionStyle(selection: immersionStyleBinding, in: .progressive)
     }
     
     /// Opens or dismisses the app's immersive space based on the game's current and previous states.

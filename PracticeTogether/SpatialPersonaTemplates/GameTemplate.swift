@@ -43,7 +43,7 @@ struct GameTemplate: SpatialTemplate {
     
     /// An array that represents the order the game adds participants to spatial template positions.
     var elements: [any SpatialTemplateElement] {
-        let activeTeamCenterPosition = SpatialTemplateElementPosition.app.offsetBy(x: 2, z: 3)
+        let activeTeamCenterPosition: SpatialTemplateElementPosition = SpatialTemplateElementPosition.app.offsetBy(x: 2, z: 3)
 
         let playerSeat = SpatialTemplateSeatElement(
             position: .app.offsetBy(x: Self.playerPosition.x, z: Self.playerPosition.z),

@@ -13,24 +13,37 @@ import SwiftUI
 struct ScenarioManagementView: View {
     @Environment(AppModel.self) var appModel
     
+    // Define a constant for the entity identifier
+    private let sceneSwitchViewID = "SceneSwitchView"
+    
     var body: some View {
         RealityView { content, attachments  in
 
-            // let group = Entity()
-            // content.add(group)
+            let group = Entity()
+            content.add(group)
 
-            // let sphere = ModelEntity(
-            //     mesh: .generateSphere(radius: 0.1),
-            //     materials: [SimpleMaterial(color: .red, isMetallic: false)]
-            // )
-            // group.addChild(sphere)
+            let sphere = ModelEntity(
+                mesh: .generateSphere(radius: 0.1),
+                materials: [SimpleMaterial(color: .red, isMetallic: false)]
+            )
+            group.addChild(sphere)
 
-            attachments.entity(for: "SceneSwitchView").map(content.add)
+            if let switchViewEntity = attachments.entity(for: sceneSwitchViewID) {
+                // Add a custom attribute to easily identify this entity later
+                switchViewEntity.components.set(
+                    EntityIDComponent(id: sceneSwitchViewID)
+                )
+                content.add(switchViewEntity)
+            }
 
-        } update: { content, _ in
-            content.entities.first.map(updatePodiumPose(_:))
+        } update: { content, attachments in
+            if let sceneSwitchEntity = content.entities.first(where: { entity in
+                return entity.components[EntityIDComponent.self]?.id == sceneSwitchViewID
+            }) {
+                updatePodiumPose(sceneSwitchEntity)
+            }
         } attachments: {
-            Attachment(id: "SceneSwitchView") {
+            Attachment(id: sceneSwitchViewID) {
                 SceneSwitchView()
             }
         }
@@ -41,4 +54,9 @@ struct ScenarioManagementView: View {
         let podiumPosition = GameTemplate.playerPosition.translated(by: Vector3D(x: 0.6))
         phraseDeckPodium.position = .init(podiumPosition)
     }
+}
+
+// Custom component to identify entities
+struct EntityIDComponent: Component {
+    var id: String
 }
