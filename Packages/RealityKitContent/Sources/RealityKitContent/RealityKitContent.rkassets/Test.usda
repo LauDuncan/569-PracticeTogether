@@ -10,50 +10,5 @@
 
 def Xform "Root"
 {
-    def "Earth" (
-        active = true
-        prepend references = @Earth.usdz@
-    )
-    {
-        float3 xformOp:scale = (2, 2, 2)
-        float3 xformOp:translate = (0, 0.3, 0)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-    }
-
-    def "Moon" (
-        active = true
-        prepend references = @Moon.usdz@
-    )
-    {
-        float3 xformOp:scale = (0.5, 0.5, 0.5)
-        float3 xformOp:translate = (-0.3, 0.6, 0)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-    }
-
-    def Cube "Cube" (
-        active = true
-        prepend apiSchemas = ["MaterialBindingAPI"]
-    )
-    {
-        rel material:binding = </Root/Cube/DefaultMaterial>
-        double size = 0.2
-        quatf xformOp:orient = (1, 0, 0, 0)
-        float3 xformOp:scale = (4, 0.25, 4)
-        float3 xformOp:translate = (0, 0, 0)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-        def Material "DefaultMaterial"
-        {
-            prepend token outputs:surface.connect = </Root/Cube/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-            def Shader "DefaultSurfaceShader"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (1, 1, 1)
-                float inputs:roughness = 0.75
-                token outputs:surface
-            }
-        }
-    }
 }
 

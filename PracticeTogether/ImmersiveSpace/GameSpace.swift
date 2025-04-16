@@ -58,12 +58,22 @@ struct GameSpace: Scene {
             return
         }
         
+        print("GameSpace detected stage change: \(oldActivityStage.debugDescription) → \(newActivityStage.debugDescription)")
+        
         Task {
-            if isInGame && !appModel.isImmersiveSpaceOpen {
-                await openImmersiveSpace(id: Self.spaceID)
-            } else if appModel.isImmersiveSpaceOpen {
-                await dismissImmersiveSpace()
-            }
+            // if isInGame && !appModel.isImmersiveSpaceOpen {
+            //     await openImmersiveSpace(id: Self.spaceID)
+            // } else if appModel.isImmersiveSpaceOpen {
+            //     await dismissImmersiveSpace()
+            // }
+
+            // Use the coordinator to handle the transition
+            await appModel.immersiveSpaceCoordinator.handleStageChange(
+                from: oldActivityStage,
+                to: newActivityStage,
+                openSpace: { spaceID in try await openImmersiveSpace(id: spaceID) },
+                dismissSpace: { try await dismissImmersiveSpace() }
+            )
         }
     }
 }

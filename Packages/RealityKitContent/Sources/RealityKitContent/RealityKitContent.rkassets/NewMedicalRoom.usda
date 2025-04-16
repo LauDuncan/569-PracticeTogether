@@ -1,0 +1,105 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (448.60.4)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root" (
+    customData = {
+        float3 rotationEulerHint = (0, 0, 0)
+    }
+)
+{
+    reorder nameChildren = ["FULLNewRoom", "Nurse_CPR_pressing"]
+    quatf xformOp:orient = (1, 0, 0, 0)
+    float3 xformOp:translate = (0, 0, 0)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+    def "FULLNewRoom" (
+        active = true
+        references = @FULLNewRoom.usdz@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "PointLight"
+        {
+            float3 xformOp:translate = (5, 3.2487316, 1.6079824)
+        }
+
+        over "Nurse_CPR_pressing" (
+            active = false
+        )
+        {
+        }
+
+        over "Storage_"
+        {
+            float3 xformOp:translate = (1.3966622, 0.33695304, 1.6915503)
+        }
+
+        over "Machine"
+        {
+            float3 xformOp:translate = (1.3480252, 1.41158, 1.7785945)
+        }
+
+        over "PointLight_1"
+        {
+            float3 xformOp:translate = (5, 3.2487316, 2.8691301)
+        }
+
+        over "PointLight_2"
+        {
+            float3 xformOp:translate = (5, 3.2487316, 4.1402235)
+        }
+
+        over "PointLight_3"
+        {
+            float3 xformOp:translate = (5, 3.2487316, 4.1402235)
+        }
+
+        over "PointLight_4"
+        {
+            float3 xformOp:translate = (5, 3.2487316, 3.1181097)
+        }
+
+        over "PointLight_5"
+        {
+            float3 xformOp:translate = (5, 3.2487316, 2.0706153)
+        }
+    }
+
+    def "Nurse_CPR_pressing" (
+        customData = {
+            float3 rotationEulerHint = (0, 4.712389, 0)
+        }
+        references = @Nurse CPR-pressing.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.70710677, 0, -0.7071067, 0)
+        float3 xformOp:scale = (0.5, 0.5, 0.5)
+        float3 xformOp:translate = (3.8, 0.2, 0.8562765)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "Ch11_body1_001"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+            }
+
+            over "Ch11_body_001"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+            }
+        }
+    }
+}
+

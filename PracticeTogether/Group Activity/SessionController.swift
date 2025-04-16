@@ -86,6 +86,8 @@ final class SessionController {
                 systemCoordinator.configuration.spatialTemplatePreference = .custom(RoleSelectionTemplate())
             case .inGame:
                 systemCoordinator.configuration.spatialTemplatePreference = .custom(GameTemplate())
+            case .debrief:
+                systemCoordinator.configuration.spatialTemplatePreference = .surround
         }
     }
     
@@ -116,6 +118,8 @@ final class SessionController {
                 case .yellow:
                     systemCoordinator.assignRole(GameTemplate.Role.chargeNurse)
                 }
+            case .debrief:
+                systemCoordinator.resignRole()
 
                 // if localPlayer.isPlaying {
                 //     systemCoordinator.assignRole(GameTemplate.Role.chargeNurse)

@@ -13,6 +13,9 @@ import Observation
 final class AppModel {
     var sessionController: SessionController?
     
+    // Coordinator for managing immersive space transitions
+    var immersiveSpaceCoordinator: ImmersiveSpaceCoordinator!
+    
     var playerName: String = UserDefaults.standard.string(forKey: "player-name") ?? "" {
         didSet {
             UserDefaults.standard.set(playerName, forKey: "player-name")
@@ -24,5 +27,20 @@ final class AppModel {
 
     var showPlayerNameAlert = false
     
+    // Immersive space tracking
     var isImmersiveSpaceOpen = false
+    var isDebriefSpaceOpen = false
+    
+    // Session statistics for debrief
+    var sessionStartTime: Date?
+    var sessionDuration: TimeInterval {
+        guard let startTime = sessionStartTime else { return 0 }
+        return Date().timeIntervalSince(startTime)
+    }
+    var completedScenarios: Int = 0
+    
+    init() {
+        // Initialize self first, then set up the coordinator
+        self.immersiveSpaceCoordinator = ImmersiveSpaceCoordinator(appModel: self)
+    }
 }

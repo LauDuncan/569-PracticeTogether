@@ -8,8 +8,7 @@ struct MenuButtonModel: Identifiable {
     let title: String
     let iconName: String
     let buttonType: MenuButtonType
-    let horizontalPadding: (normal: CGFloat, selected: CGFloat)
-    var isSelected: Bool = false
+    let horizontalPadding: CGFloat
 }
 
 // MARK: - Button Types
@@ -21,39 +20,42 @@ enum MenuButtonType {
 
 // MARK: - Content View
 struct SceneSwitchView: View {
-    @Environment(AppModel.self) var appModel
     @Environment(\.physicalMetrics) var converter
-
-    // State to track the currently selected button
+    @Environment(AppModel.self) var appModel
+    
+    // Single source of truth for which button is currently selected
     @State private var selectedButtonIndex: Int? = nil
     
-    // Main buttons data
-    @State private var menuButtons: [MenuButtonModel] = [
-        MenuButtonModel(title: "Provide Oxygen", iconName: "arrow.clockwise", buttonType: .standard, horizontalPadding: (70, 70)),
-        MenuButtonModel(title: "Place Defibrillator Pads", iconName: "arrow.clockwise", buttonType: .standard, horizontalPadding: (35, 35)),
-        MenuButtonModel(title: "Set Defibrillation Energy", iconName: "arrow.clockwise", buttonType: .standard, horizontalPadding: (35, 35)),
-        MenuButtonModel(title: "Provide Defib Shock", iconName: "arrow.clockwise", buttonType: .standard, horizontalPadding: (50, 50)),
-        MenuButtonModel(title: "Debrief Room", iconName: "bubble.left.and.bubble.right.fill", buttonType: .debrief, horizontalPadding: (0, 0))
+    // Define all buttons in a single array
+    private let menuButtons: [MenuButtonModel] = [
+        MenuButtonModel(title: "Provide Oxygen", iconName: "arrow.clockwise", buttonType: .standard, horizontalPadding: 70),
+        MenuButtonModel(title: "Place Defibrillator Pads", iconName: "arrow.clockwise", buttonType: .standard, horizontalPadding: 35),
+        MenuButtonModel(title: "Set Defibrillation Energy", iconName: "arrow.clockwise", buttonType: .standard, horizontalPadding: 35),
+        MenuButtonModel(title: "Provide Defib Shock", iconName: "arrow.clockwise", buttonType: .standard, horizontalPadding: 50),
+        MenuButtonModel(title: "Debrief Room", iconName: "bubble.left.and.bubble.right.fill", buttonType: .debrief, horizontalPadding: 0)
     ]
 
     var body: some View {
         VStack(spacing: 20) {
-            // Main menu buttons
-            ForEach(0..<menuButtons.count, id: \.self) { index in
-                MenuButton(
-                    model: $menuButtons[index],
-                    isSelected: menuButtons[index].isSelected,
-                    action: {
-                        selectButton(at: index)
-                    }
-                )
+            // Main action buttons
+            ForEach(Array(menuButtons.enumerated()), id: \.element.id) { index, button in
+                if button.buttonType != .exit {
+                    ScenarioButton(
+                        title: button.title,
+                        iconName: button.iconName,
+                        buttonType: button.buttonType,
+                        horizontalPadding: button.horizontalPadding,
+                        isSelected: selectedButtonIndex == index,
+                        action: {
+                            handleButtonTap(at: index)
+                        }
+                    )
+                }
             }
             
-            // Exit Button
+            // Exit Button - kept separate since it has different styling
             Button(action: {
-                print("Exit Button tapped")
-                // Deselect all other buttons
-                deselectAllButtons()
+                handleExitTap()
             }) {
                 HStack(spacing: 1) {
                     Image(systemName: "xmark")
@@ -76,39 +78,59 @@ struct SceneSwitchView: View {
         .offset(y: -converter.convert(1.1, from: .meters))
     }
     
-    // MARK: - Button Selection Logic
-    private func selectButton(at index: Int) {
-        // Deselect all buttons
-        deselectAllButtons()
-        
-        // Select the tapped button
-        menuButtons[index].isSelected = true
+    // MARK: - Button Action Handlers
+    private func handleButtonTap(at index: Int) {
+        // Toggle selection state - if tapping the same button, it stays selected
         selectedButtonIndex = index
+        
+        // Perform the appropriate action based on the button type
+        let button = menuButtons[index]
+        switch button.buttonType {
+        case .standard:
+            print("Standard action button tapped: \(button.title)")
+            // Add specific action logic here
+            appModel.completedScenarios += 1
+            
+        case .debrief:
+            print("Debrief Room button tapped")
+            // Start the session timer if not already started
+            if appModel.sessionStartTime == nil {
+                appModel.sessionStartTime = Date()
+            }
+            // Transition to debrief stage
+            appModel.sessionController?.game.stage = .debrief
+            
+        case .exit:
+            // Should not reach here as exit is handled separately
+            break
+        }
     }
     
-    private func deselectAllButtons() {
-        for i in 0..<menuButtons.count {
-            menuButtons[i].isSelected = false
-        }
+    private func handleExitTap() {
+        print("Exit button tapped")
         selectedButtonIndex = nil
+        appModel.sessionController?.endGame()
     }
 }
 
 // MARK: - Reusable Button Component
-struct MenuButton: View {
-    @Binding var model: MenuButtonModel
+struct ScenarioButton: View {
+    let title: String
+    let iconName: String
+    let buttonType: MenuButtonType
+    let horizontalPadding: CGFloat
     let isSelected: Bool
     let action: () -> Void
     
     var body: some View {
         Button(action: action) {
-            switch model.buttonType {
+            switch buttonType {
             case .standard:
                 standardButtonContent
             case .debrief:
                 debriefButtonContent
             case .exit:
-                EmptyView() // Exit button is handled separately
+                EmptyView() // Exit is handled separately in the parent view
             }
         }
         .background(buttonBackground)
@@ -119,20 +141,20 @@ struct MenuButton: View {
     private var standardButtonContent: some View {
         HStack(spacing: 2) {
             if isSelected {
-                Image(systemName: model.iconName)
+                Image(systemName: iconName)
                     .foregroundColor(.white)
                     .padding(.trailing, 1)
             }
             
-            Text(model.title)
+            Text(title)
                 .frame(maxWidth: .infinity)
                 .cornerRadius(10)
         }
         .padding(EdgeInsets(
             top: isSelected ? 28 : 18,
-            leading: model.horizontalPadding.normal,
+            leading: horizontalPadding,
             bottom: isSelected ? 28 : 18,
-            trailing: model.horizontalPadding.normal
+            trailing: horizontalPadding
         ))
         .frame(alignment: .center)
     }
@@ -140,12 +162,12 @@ struct MenuButton: View {
     private var debriefButtonContent: some View {
         HStack {
             VStack {
-                Image(systemName: model.iconName)
+                Image(systemName: iconName)
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
                 
                 if isSelected {
-                    Text(model.title)
+                    Text(title)
                         .frame(maxWidth: .infinity)
                         .padding(.top, 2)
                 }
@@ -157,7 +179,7 @@ struct MenuButton: View {
     // MARK: - Button Background
     private var buttonBackground: some View {
         Group {
-            if model.buttonType == .debrief {
+            if buttonType == .debrief {
                 LinearGradient(
                     gradient: Gradient(colors: [Color.blue, Color.purple]),
                     startPoint: .topLeading,
@@ -170,10 +192,3 @@ struct MenuButton: View {
         }
     }
 }
-
-
-//#Preview(windowStyle: .automatic) {
-//    SceneSwitchView()
-//        .environment(AppModel())
-//}
-    

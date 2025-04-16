@@ -11,11 +11,177 @@
       }
     ]
   },
+  "14D6E598-975A-46DC-B78E-2409CEFCECE4" : {
+    "objectMetadataList" : [
+      [
+        "14D6E598-975A-46DC-B78E-2409CEFCECE4",
+        "Cylinder"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "14D6E598-975A-46DC-B78E-2409CEFCECE4",
+        "SmoothConcrete",
+        "Cylinder"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
   "1A2FE1D4-20E5-4734-A866-31BC5EFBB270" : {
     "objectMetadataList" : [
       [
         "1A2FE1D4-20E5-4734-A866-31BC5EFBB270",
         "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "1CBB146A-828E-4A08-9291-3C19B5C3889C" : {
+    "objectMetadataList" : [
+      [
+        "1CBB146A-828E-4A08-9291-3C19B5C3889C",
+        "Root",
+        "HospitalAmbient"
+      ],
+      {
+        "isExpanded" : false,
+        "isLocked" : false,
+        "selectedAudioFilePrim" : {
+          "string" : "\/Root\/SFX\/hospital_ambience_2_mp3"
+        }
+      },
+      [
+        "1CBB146A-828E-4A08-9291-3C19B5C3889C",
+        "Root",
+        "CodeBlueAnnouncement"
+      ],
+      {
+        "isExpanded" : false,
+        "isLocked" : false,
+        "selectedAudioFilePrim" : {
+          "string" : "\/Root\/SFX\/code_blue_announcement_mp3"
+        }
+      },
+      [
+        "1CBB146A-828E-4A08-9291-3C19B5C3889C",
+        "Root",
+        "SpatialAudio"
+      ],
+      {
+        "isExpanded" : false,
+        "isLocked" : false,
+        "selectedAudioFilePrim" : {
+          "string" : "\/Root\/SFX\/code_blue_announcement_mp3"
+        }
+      },
+      [
+        "1CBB146A-828E-4A08-9291-3C19B5C3889C",
+        "Root",
+        "ChestCompression"
+      ],
+      {
+        "isExpanded" : false,
+        "isLocked" : false,
+        "selectedAudioFilePrim" : {
+          "string" : "\/Root\/SFX\/chest_compression_100bpm_mp3"
+        }
+      },
+      [
+        "1CBB146A-828E-4A08-9291-3C19B5C3889C",
+        "Root",
+        "SFX"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "1CBB146A-828E-4A08-9291-3C19B5C3889C",
+        "Root",
+        "HospitalAmbience"
+      ],
+      {
+        "isExpanded" : false,
+        "isLocked" : false,
+        "selectedAudioFilePrim" : {
+          "string" : "\/Root\/SFX\/hospital_ambience_2_mp3"
+        }
+      },
+      [
+        "1CBB146A-828E-4A08-9291-3C19B5C3889C",
+        "Root",
+        "AmbientAudio"
+      ],
+      {
+        "isExpanded" : false,
+        "isLocked" : false,
+        "selectedAudioFilePrim" : {
+          "string" : "\/Root\/SFX\/hospital_ambience_2_mp3"
+        }
+      },
+      [
+        "1CBB146A-828E-4A08-9291-3C19B5C3889C",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "25B2DEDA-5FE4-4E78-8BCC-5DCA8B36E024" : {
+    "objectMetadataList" : [
+      [
+        "25B2DEDA-5FE4-4E78-8BCC-5DCA8B36E024",
+        "Root",
+        "FULLNewRoom"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "25B2DEDA-5FE4-4E78-8BCC-5DCA8B36E024",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "535FA9DF-BD84-4B17-8D31-FB36048ABB35" : {
+    "objectMetadataList" : [
+      [
+        "535FA9DF-BD84-4B17-8D31-FB36048ABB35",
+        "Root",
+        "Fullroom_1"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "535FA9DF-BD84-4B17-8D31-FB36048ABB35",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "535FA9DF-BD84-4B17-8D31-FB36048ABB35",
+        "Root",
+        "Fullroom_1",
+        "full_room2"
       ],
       {
         "isExpanded" : true,
@@ -56,6 +222,15 @@
       {
         "isExpanded" : true,
         "isLocked" : false
+      },
+      [
+        "91C1E678-43E1-4F02-A3B6-842EF606BB42",
+        "Root",
+        "FULLNewRoom"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
       }
     ]
   },
@@ -64,7 +239,7 @@
       [
         "AF09ED6F-1707-48FD-8720-65B998362C09",
         "Root",
-        "Sphere_Left"
+        "Sphere_Right"
       ],
       {
         "isExpanded" : true,
@@ -73,7 +248,7 @@
       [
         "AF09ED6F-1707-48FD-8720-65B998362C09",
         "Root",
-        "Sphere_Right"
+        "Sphere_Left"
       ],
       {
         "isExpanded" : true,
@@ -119,9 +294,7 @@
     "objectMetadataList" : [
       [
         "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "GridMaterial",
-        "GridMaterial"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -129,11 +302,70 @@
       },
       [
         "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "GridMaterial",
+        "GridMaterial"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "DE0E382A-FA45-4367-80AB-B9D979482211" : {
+    "objectMetadataList" : [
+      [
+        "DE0E382A-FA45-4367-80AB-B9D979482211",
         "Root"
       ],
       {
         "isExpanded" : true,
         "isLocked" : false
+      },
+      [
+        "DE0E382A-FA45-4367-80AB-B9D979482211",
+        "Root",
+        "ChestCompression"
+      ],
+      {
+        "isExpanded" : false,
+        "isLocked" : false,
+        "selectedAudioFilePrim" : {
+          "string" : "\/Root\/SFX\/chest_compression_100bpm_mp3"
+        }
+      },
+      [
+        "DE0E382A-FA45-4367-80AB-B9D979482211",
+        "Root",
+        "CodeBlueAnnouncement"
+      ],
+      {
+        "isExpanded" : false,
+        "isLocked" : false,
+        "selectedAudioFilePrim" : {
+          "string" : "\/Root\/SFX\/code_blue_announcement_mp3"
+        }
+      },
+      [
+        "DE0E382A-FA45-4367-80AB-B9D979482211",
+        "Root",
+        "SFX"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "DE0E382A-FA45-4367-80AB-B9D979482211",
+        "Root",
+        "HospitalAmbience"
+      ],
+      {
+        "isExpanded" : false,
+        "isLocked" : false,
+        "selectedAudioFilePrim" : {
+          "string" : "\/Root\/SFX\/hospital_ambience_2_mp3"
+        }
       }
     ]
   }

@@ -35,6 +35,7 @@ extension GameModel {
         case scenarioSelection
         case roleSelection
         case inGame(GameStage)
+        case debrief
         
         var isInGame: Bool {
             if case .inGame = self {

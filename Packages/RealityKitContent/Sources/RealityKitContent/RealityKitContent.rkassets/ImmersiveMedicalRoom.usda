@@ -1,0 +1,277 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (448.60.4)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["FULLNewRoom", "NurseCPR", "HospitalAmbience", "CodeBlueAnnouncement", "ChestCompression", "SFX"]
+    def "FULLNewRoom" (
+        active = true
+        references = @FULLNewRoom.usdz@
+    )
+    {
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Nurse_CPR_pressing" (
+            active = false
+        )
+        {
+        }
+
+        over "TheWholeRoom"
+        {
+            over "Materials"
+            {
+                over "wood"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                }
+
+                over "_27"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                }
+
+                over "_5"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                }
+
+                over "_Charcoal_"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                }
+
+                over "_DimGray_"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                }
+
+                over "Material"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                }
+
+                over "Custom__1_"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                }
+
+                over "acbbc8c369cbf750719a2aeb8d1ed7b6_jpg__43_"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                }
+
+                over "_4acef6ba0f9b3bb9754704c67889a4c5_jpg__7_"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                }
+
+                over "countertop"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                }
+
+                over "acbbc8c369cbf750719a2aeb8d1ed7b6_jpg__21_"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                }
+
+                over "acbbc8c369cbf750719a2aeb8d1ed7b6_jpg__19_"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                }
+
+                over "acbbc8c369cbf750719a2aeb8d1ed7b6_jpg__18_"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                }
+
+                over "_27_2"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                }
+
+                over "acbbc8c369cbf750719a2aeb8d1ed7b6_jpg__20_"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                }
+
+                over "acbbc8c369cbf750719a2aeb8d1ed7b6_jpg__17_"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                }
+
+                over "_4acef6ba0f9b3bb9754704c67889a4c5_jpg__4_"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                }
+
+                over "acbbc8c369cbf750719a2aeb8d1ed7b6_jpg__16_"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                }
+
+                over "countertop_2"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                }
+
+                over "Plaster__6_"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                }
+
+                over "wall__3_"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                }
+
+                over "_3"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                }
+
+                over "_3_2"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                }
+            }
+        }
+    }
+
+    def "NurseCPR" (
+        customData = {
+            float3 rotationEulerHint = (0, 4.712389, 0)
+        }
+        references = @Nurse CPR-pressing.usdz@
+    )
+    {
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+        quatf xformOp:orient = (0.70710677, 0, -0.7071067, 0)
+        float3 xformOp:scale = (0.5, 0.5, 0.5)
+        float3 xformOp:translate = (3.8, 0.2, 0.8562765)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "Ch11_body1_001"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+            }
+
+            over "Ch11_body_001"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+            }
+        }
+    }
+
+    def Xform "HospitalAmbience"
+    {
+        float3 xformOp:translate = (5.8331738, 0, 4.512393)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "AmbientAudio"
+        {
+            float gain = -14.968938
+            uniform token info:id = "RealityKit.AmbientAudio"
+        }
+    }
+
+    def Xform "SFX" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["chest_compression_100bpm_mp3", "code_blue_announcement_mp3", "oxygen_hiss_mp3", "hospital_ambience_2_mp3"]
+        def RealityKitAudioFile "oxygen_hiss_mp3"
+        {
+            uniform asset file = @SFX/oxygen hiss.mp3@
+            uniform bool shouldLoop = 0
+        }
+
+        def RealityKitAudioFile "hospital_ambience_2_mp3"
+        {
+            uniform asset file = @SFX/hospital ambience 2.mp3@
+            uniform bool shouldLoop = 1
+        }
+
+        def RealityKitAudioFile "code_blue_announcement_mp3"
+        {
+            uniform asset file = @SFX/code blue announcement.mp3@
+            uniform bool shouldLoop = 0
+        }
+
+        def RealityKitAudioFile "chest_compression_100bpm_mp3"
+        {
+            uniform asset file = @SFX/chest_compression_100bpm.mp3@
+            uniform bool shouldLoop = 1
+        }
+    }
+
+    def Xform "CodeBlueAnnouncement" (
+        customData = {
+            float3 rotationEulerHint = (0, -3.1415918, 0)
+        }
+    )
+    {
+        quatf xformOp:orient = (4.371139e-8, 0, 1, 0)
+        float3 xformOp:scale = (0.99999994, 1, 0.99999994)
+        float3 xformOp:translate = (3.0715823, 2.1260705, 1.3263639)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "SpatialAudio"
+        {
+            uniform token info:id = "RealityKit.SpatialAudio"
+        }
+    }
+
+    def Xform "ChestCompression"
+    {
+        float3 xformOp:translate = (3.2022247, 1.2183359, 0.8870306)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "SpatialAudio"
+        {
+            float gain = -35
+            uniform token info:id = "RealityKit.SpatialAudio"
+            float rolloffFactor = 2
+        }
+    }
+}
+

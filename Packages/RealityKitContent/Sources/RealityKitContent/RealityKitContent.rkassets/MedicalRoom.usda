@@ -18,6 +18,15 @@ def Xform "Root"
         float3 xformOp:scale = (1, 1, 1)
         float3 xformOp:translate = (0, 0, 0)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "full_room2"
+        {
+        }
+
+        over "Patient"
+        {
+            float3 xformOp:translate = (-1.1080102, 0.9232749, 1.515888)
+        }
     }
 }
 

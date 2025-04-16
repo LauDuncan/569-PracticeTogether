@@ -16,6 +16,7 @@ struct PracticeTogetherApp: App {
         Group {
             PracticeTogetherWindow()
             GameSpace()
+            DebriefSpace()
         }
         .environment(appModel)
     }

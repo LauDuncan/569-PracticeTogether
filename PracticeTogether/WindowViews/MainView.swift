@@ -42,6 +42,8 @@ struct MainView: View {
                     RoleSelectionView()
                 case .inGame:
                     ScenarioStatusView()
+                case .debrief:
+                    DebriefView()
             }
         }
         .task(observeGroupSessions)
