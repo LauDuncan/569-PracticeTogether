@@ -80,7 +80,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 78DFBB0D2D9DB30500DA448B /* Build configuration list for PBXNativeTarget "PracticeTogether" */;
 			buildPhases = (
-				78DFBAF12D9DB30300DA448B /* Sources */,
 				78DFBAF22D9DB30300DA448B /* Frameworks */,
 				78DFBAF32D9DB30300DA448B /* Resources */,
 			);
@@ -142,16 +141,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		78DFBAF12D9DB30300DA448B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
 		78DFBB0E2D9DB30500DA448B /* Debug */ = {

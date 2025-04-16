@@ -20,8 +20,6 @@ enum MenuButtonType {
 
 // MARK: - Content View
 struct SceneSwitchView: View {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     @Environment(\.physicalMetrics) var converter
     @Environment(AppModel.self) var appModel
     
@@ -53,50 +51,8 @@ struct SceneSwitchView: View {
                         }
                     )
                 }
-=======
-    @Environment(AppModel.self) var appModel
-    
-    var body: some View {
-=======
-    @Environment(AppModel.self) var appModel
-    
-    var body: some View {
->>>>>>> Stashed changes
-        ZStack {
-            // Get game state from the session controller or fallback to a default state
-            switch appModel.sessionController?.game.stage {
-            case .drawing:
-                PaintingView()
-            case .inGame:
-                let gameSpace = appModel.sessionController?.game
-                    .stage.isInGame == true
-                
-                ScenarioView()
-                    .opacity(gameSpace ? 1 : 0)
-            default:
-                Text("No active scenario")
-                    .font(.largeTitle)
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
             }
-        }
-    }
-}
-
-private struct ScenarioView: View {
-    @Environment(AppModel.self) var appModel
-    
-    var body: some View {
-        HStack(spacing: 50) {
-            nurseView
-            defibrillatorView
-            defibNurseView
-            computerView
             
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
             // Exit Button - kept separate since it has different styling
             Button(action: {
                 handleExitTap()
@@ -114,22 +70,14 @@ private struct ScenarioView: View {
                 .frame(width: 150)
                 .frame(alignment: .center)
                 .padding()
-=======
-            VStack(spacing: 0) {
-                patientsHeadView
-                patientView
->>>>>>> Stashed changes
-=======
-            VStack(spacing: 0) {
-                patientsHeadView
-                patientView
->>>>>>> Stashed changes
             }
         }
+        .frame(width: 340, height: 600)
+        .rotation3DEffect(Rotation3D(angle: .degrees(20), axis: .x), anchor: .center)
+        .rotation3DEffect(Rotation3D(angle: .degrees(270), axis: .y), anchor: .center)
+        .offset(y: -converter.convert(1.1, from: .meters))
     }
     
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     // MARK: - Button Action Handlers
     private func handleButtonTap(at index: Int) {
         // Toggle selection state - if tapping the same button, it stays selected
@@ -162,94 +110,6 @@ private struct ScenarioView: View {
         print("Exit button tapped")
         selectedButtonIndex = nil
         appModel.sessionController?.endGame()
-=======
-    var nurseView: some View {
-        ScenarioItemView(
-            scenarioName: "Airway Nurse",
-            description: "Intubation, mask ventilation, suction, jaw thrust"
-        )
-    }
-    
-=======
-    var nurseView: some View {
-        ScenarioItemView(
-            scenarioName: "Airway Nurse",
-            description: "Intubation, mask ventilation, suction, jaw thrust"
-        )
-    }
-    
->>>>>>> Stashed changes
-    var defibrillatorView: some View {
-        ScenarioItemView(
-            scenarioName: "Defibrillator",
-            description: "Shock patient here when physician says ",clear,""
-        )
-    }
-    
-    var defibNurseView: some View {
-        ScenarioItemView(
-            scenarioName: "Defibrillator Nurse",
-            description: "Monitors patient in defibrillator app, times chest compressions"
-        )
-    }
-    
-    var computerView: some View {
-        ScenarioItemView(
-            scenarioName: "Computer",
-            description: "Code documentation, orders, med dosing"
-        )
-    }
-    
-    var patientsHeadView: some View {
-        ScenarioItemView(
-            scenarioName: "Patient's Head",
-            description: "Airway nurse intubates"
-        )
-    }
-    
-    var patientView: some View {
-        ScenarioItemView(
-            scenarioName: "Patient",
-            description: "Central line placement, chest compressions, monitors, IV"
-        )
-    }
-}
-
-private struct ScenarioItemView: View {
-    var scenarioName: String
-    var description: String
-    
-    var body: some View {
-        VStack {
-            Text(scenarioName)
-                .font(.largeTitle)
-                .fontWidth(.expanded)
-                .fontWeight(.bold)
-                .padding()
-                .frame(maxWidth: 400)
-                .multilineTextAlignment(.center)
-                .background {
-                    RoundedRectangle(cornerRadius: 16)
-                        .foregroundStyle(.regularMaterial)
-                }
-            
-            Spacer()
-                .frame(height: 40)
-            
-            Text(description)
-                .font(.title)
-                .multilineTextAlignment(.center)
-                .padding()
-                .frame(maxWidth: 400)
-                .background {
-                    RoundedRectangle(cornerRadius: 16)
-                        .foregroundStyle(.regularMaterial)
-                }
-        }
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     }
 }
 
