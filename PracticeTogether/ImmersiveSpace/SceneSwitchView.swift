@@ -21,6 +21,7 @@ enum MenuButtonType {
 // MARK: - Content View
 struct SceneSwitchView: View {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     @Environment(\.physicalMetrics) var converter
     @Environment(AppModel.self) var appModel
     
@@ -56,6 +57,11 @@ struct SceneSwitchView: View {
     @Environment(AppModel.self) var appModel
     
     var body: some View {
+=======
+    @Environment(AppModel.self) var appModel
+    
+    var body: some View {
+>>>>>>> Stashed changes
         ZStack {
             // Get game state from the session controller or fallback to a default state
             switch appModel.sessionController?.game.stage {
@@ -70,6 +76,9 @@ struct SceneSwitchView: View {
             default:
                 Text("No active scenario")
                     .font(.largeTitle)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             }
         }
@@ -86,6 +95,7 @@ private struct ScenarioView: View {
             defibNurseView
             computerView
             
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
             // Exit Button - kept separate since it has different styling
             Button(action: {
@@ -109,10 +119,16 @@ private struct ScenarioView: View {
                 patientsHeadView
                 patientView
 >>>>>>> Stashed changes
+=======
+            VStack(spacing: 0) {
+                patientsHeadView
+                patientView
+>>>>>>> Stashed changes
             }
         }
     }
     
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     // MARK: - Button Action Handlers
     private func handleButtonTap(at index: Int) {
@@ -154,6 +170,15 @@ private struct ScenarioView: View {
         )
     }
     
+=======
+    var nurseView: some View {
+        ScenarioItemView(
+            scenarioName: "Airway Nurse",
+            description: "Intubation, mask ventilation, suction, jaw thrust"
+        )
+    }
+    
+>>>>>>> Stashed changes
     var defibrillatorView: some View {
         ScenarioItemView(
             scenarioName: "Defibrillator",
@@ -221,6 +246,9 @@ private struct ScenarioItemView: View {
                         .foregroundStyle(.regularMaterial)
                 }
         }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     }
 }
