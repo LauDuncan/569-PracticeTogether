@@ -1,5 +1,5 @@
 /*
-See the LICENSE.txt file for this sample’s licensing information.
+See the LICENSE.txt file for this sample's licensing information.
 
 Abstract:
 A model that represents the current state of the game
@@ -21,6 +21,9 @@ struct GameModel: Codable, Hashable, Sendable {
     
     /// The ending time of the current round, which the app sets at the beginning of each turn.
     var currentRoundEndTime: Date?
+    
+    /// Collection of strokes for the drawing functionality
+    var strokes: [UUID: ShareableStroke] = [:]
 }
 
 extension GameModel {
@@ -34,11 +37,20 @@ extension GameModel {
     enum ActivityStage: Codable, Hashable, Sendable {
         case scenarioSelection
         case roleSelection
+        case drawing // New stage for drawing functionality
         case inGame(GameStage)
         case debrief
         
         var isInGame: Bool {
             if case .inGame = self {
+                true
+            } else {
+                false
+            }
+        }
+        
+        var isDrawing: Bool {
+            if case .drawing = self {
                 true
             } else {
                 false
