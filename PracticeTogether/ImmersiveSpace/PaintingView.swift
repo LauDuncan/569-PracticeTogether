@@ -98,10 +98,10 @@ struct PaintingView: View {
     }
 }
 
-// Preview needs adjustment if it relies on specific initializers now
-#Preview {
-     PaintingView()
-         // Add environment objects if needed for preview
-         // .environment(AppModel())
-}
+//// Preview needs adjustment if it relies on specific initializers now
+//#Preview {
+//     PaintingView()
+//         // Add environment objects if needed for preview
+//         // .environment(AppModel())
+//}
 

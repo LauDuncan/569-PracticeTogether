@@ -17,13 +17,13 @@ class PaintingCanvas {
     /// The main root entity for the painting canvas.
     let root = Entity()
     
-    /// Reference to the SharePlay coordinator.
-    private var sessionCoordinator: PaintingSessionCoordinator
+    /// Reference to the session controller.
+    private var sessionController: SessionController
     
     /// Dictionary mapping ShareableStroke IDs to their visual representation entities.
     private var strokeVisuals: [UUID: StrokeVisual] = [:]
     
-    /// Stores cancellables for observing coordinator changes.
+    /// Stores cancellables for observing changes.
     private var cancellables = Set<AnyCancellable>()
 
     /// The identifier for the currently active local stroke, if any.
@@ -35,12 +35,12 @@ class PaintingCanvas {
     /// The distance for the box that extends in the negative direction.
     let small: Float = 1E-2
 
-    // Sets up the painting canvas, collision boxes, and observes the coordinator.
-    init(sessionCoordinator: PaintingSessionCoordinator) {
-        self.sessionCoordinator = sessionCoordinator
+    // Sets up the painting canvas, collision boxes, and observes strokes.
+    init(sessionController: SessionController) {
+        self.sessionController = sessionController
         
         setupCollisionBoxes()
-        observeCoordinator() // Start observing strokes from SharePlay
+        observeGameModel() // Start observing strokes from the game model
     }
 
     private func setupCollisionBoxes() {
@@ -61,17 +61,22 @@ class PaintingCanvas {
         return box
     }
 
-    /// Observe changes in the coordinator's strokes dictionary.
-    private func observeCoordinator() {
-        sessionCoordinator.$strokes
-            .receive(on: RunLoop.main) // Ensure updates are on the main thread
+    /// Observe changes in the game model's strokes dictionary.
+    private func observeGameModel() {
+        // Use a publisher to observe changes to the game's strokes
+        let gamePublisher = sessionController.publisher(for: \.game)
+        
+        gamePublisher
+            .map(\.strokes)
+            .removeDuplicates()
+            .receive(on: RunLoop.main)
             .sink { [weak self] updatedStrokes in
                 self?.syncStrokeVisuals(with: updatedStrokes)
             }
             .store(in: &cancellables)
     }
 
-    /// Synchronizes the `strokeVisuals` dictionary and the RealityKit scene with the coordinator's state.
+    /// Synchronizes the `strokeVisuals` dictionary and the RealityKit scene with the game's state.
     private func syncStrokeVisuals(with shareableStrokes: [UUID: ShareableStroke]) {
         // Remove visuals for strokes that no longer exist
         let strokesToRemove = strokeVisuals.keys.filter { shareableStrokes[$0] == nil }
@@ -90,33 +95,30 @@ class PaintingCanvas {
                     existingVisual.points = shareableStroke.points
                     existingVisual.isFinished = shareableStroke.isFinished
                     existingVisual.updateMesh()
-                     print("Updated visual for stroke \(id)")
+                    print("Updated visual for stroke \(id)")
                 }
             } else {
                 // Create new visual
                 let newVisual = StrokeVisual(points: shareableStroke.points, isFinished: shareableStroke.isFinished)
                 strokeVisuals[id] = newVisual
                 root.addChild(newVisual.entity)
-                 print("Added visual for stroke \(id)")
+                print("Added visual for stroke \(id)")
             }
         }
     }
 
     // --- Local Drawing Actions (Triggered by View Gestures) ---
 
-    /// Starts a new local stroke and notifies the coordinator.
+    /// Starts a new local stroke and notifies the session controller.
     func startLocalStroke() {
-        // Get participantID if in a session, otherwise it's nil for a local-only stroke
-        let participantID = sessionCoordinator.session?.localParticipant.id
-        
-        // Call the coordinator to start the stroke, passing the optional participantID
-        let newStroke = sessionCoordinator.startStroke(participantID: participantID)
+        // Call the session controller to start the stroke
+        let newStroke = sessionController.startStroke()
         self.currentLocalStrokeID = newStroke.id
         
-        // Visual representation will be created/updated by the coordinator observer
+        // Visual representation will be created/updated by the game model observer
     }
 
-    /// Adds a point to the current local stroke and notifies the coordinator.
+    /// Adds a point to the current local stroke and notifies the session controller.
     func addPointToLocalStroke(_ position: SIMD3<Float>) {
         guard let strokeID = currentLocalStrokeID else {
             // print("Cannot add point: No active local stroke.") // Can be noisy
@@ -126,10 +128,10 @@ class PaintingCanvas {
         /// The maximum distance between two points before requiring a new point.
         let threshold: Float = 1E-9
         
-        // Get the latest points for the current stroke from the coordinator's state
-        guard let currentPoints = sessionCoordinator.strokes[strokeID]?.points else {
-             print("Warning: Could not find current points for stroke \(strokeID) in coordinator.")
-             return
+        // Get the latest points for the current stroke from the game state
+        guard let currentPoints = sessionController.game.strokes[strokeID]?.points else {
+            print("Warning: Could not find current points for stroke \(strokeID) in game state.")
+            return
         }
 
         // Check distance threshold against the last point *in the shared state*
@@ -137,19 +139,19 @@ class PaintingCanvas {
             return
         }
 
-        // Notify the coordinator to add the point (which updates shared state and triggers sync)
-        sessionCoordinator.addPoint(position, to: strokeID)
+        // Notify the session controller to add the point (which updates shared state and triggers sync)
+        sessionController.addPoint(position, to: strokeID)
     }
 
-    /// Finishes the current local stroke and notifies the coordinator.
+    /// Finishes the current local stroke and notifies the session controller.
     func finishLocalStroke() {
         guard let strokeID = currentLocalStrokeID else {
             // print("Cannot finish stroke: No active local stroke.") // Can be noisy
             return
         }
-        sessionCoordinator.finishStroke(strokeID: strokeID)
+        sessionController.finishStroke(strokeID: strokeID)
         self.currentLocalStrokeID = nil
         
-        // Final visual update will happen via the coordinator observer
+        // Final visual update will happen via the game model observer
     }
 }
