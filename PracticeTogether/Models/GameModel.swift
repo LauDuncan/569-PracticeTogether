@@ -1,5 +1,5 @@
 /*
-See the LICENSE.txt file for this sample’s licensing information.
+See the LICENSE.txt file for this sample's licensing information.
 
 Abstract:
 A model that represents the current state of the game
@@ -21,6 +21,9 @@ struct GameModel: Codable, Hashable, Sendable {
     
     /// The ending time of the current round, which the app sets at the beginning of each turn.
     var currentRoundEndTime: Date?
+    
+    /// The active scene index (1-4) for all participants to keep in sync
+    var activeSceneIndex: Int = 1
 }
 
 extension GameModel {

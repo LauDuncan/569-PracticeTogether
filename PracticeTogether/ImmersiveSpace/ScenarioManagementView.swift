@@ -40,15 +40,16 @@ struct ScenarioManagementView: View {
                 
                 print("Successfully loaded SceneAll model")
                 
-                // Find and store all scene child entities
+                // Find and store all scene entities
                 for i in 1...4 {
                     let sceneName = "scene\(i)"
                     if let sceneEntity = roomScene.findEntity(named: sceneName) {
                         sceneEntities[sceneName] = sceneEntity
                         print("Found \(sceneName)")
                         
-                        // Only enable the first scene initially
-                        sceneEntity.isEnabled = (i == 1)
+                        // Only enable the first scene initially or the scene specified in game model
+                        let initialSceneIndex = appModel.sessionController?.game.activeSceneIndex ?? 1
+                        sceneEntity.isEnabled = (i == initialSceneIndex)
                     } else {
                         print("Could not find \(sceneName) in the model")
                     }
@@ -75,10 +76,12 @@ struct ScenarioManagementView: View {
                 }
 
                 // Initial animation for the first scene
-                animateNurseInScene(sceneNumber: 1)
+                let initialSceneIndex = appModel.sessionController?.game.activeSceneIndex ?? 1
+                animateNurseInScene(sceneNumber: initialSceneIndex)
                 
                 // Move the entire room further away from the origin
                 roomScene.position = SIMD3<Float>(-3.5, 0, 3)
+                roomScene.scale = SIMD3<Float>(0.9, 0.9, 0.9)
             }
 
             if let switchViewEntity = attachments.entity(for: sceneSwitchViewID) {
@@ -101,13 +104,21 @@ struct ScenarioManagementView: View {
             }
         } attachments: {
             Attachment(id: sceneSwitchViewID) {
-                SceneSwitchView(activateScene: activateScene)
+                SceneSwitchView(activateScene: activateSceneAndSync)
             }
         }
         .frame(depth: 0)
+        .onChange(of: appModel.sessionController?.game.activeSceneIndex) { _, newIndex in
+            if let index = newIndex, index >= 1 && index <= 4 {
+                // Only update if we need to (prevents recursion)
+                if index != activeSceneNumber {
+                    print("Remote scene change detected: \(index)")
+                    activateScene(number: index)
+                }
+            }
+        }
     }
     
-
     func createSkybox() -> Entity? {
         let largeSphere = MeshResource.generateSphere(radius: 15)
         var skyboxMaterial = UnlitMaterial()
@@ -183,6 +194,15 @@ struct ScenarioManagementView: View {
         } else {
             print("No nurse entity found to animate")
         }
+    }
+    
+    // Method to activate a scene and sync with other participants
+    func activateSceneAndSync(number: Int) {
+        // First activate the scene locally
+        activateScene(number: number)
+        
+        // Then sync with other participants
+        appModel.sessionController?.updateActiveScene(index: number)
     }
     
     // Method to activate a specific scene by number (1-4)

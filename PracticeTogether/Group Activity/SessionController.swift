@@ -235,4 +235,20 @@ final class SessionController {
         // Check for conflicts and update spatial position
         updatePlayerRole()
     }
+    
+    // Updates the active scene index and syncs with all participants
+    func updateActiveScene(index: Int) {
+        guard index >= 1 && index <= 4 else { return }
+        
+        // Only update if the scene index has changed
+        if game.activeSceneIndex != index {
+            // Update the scene index in the game model
+            game.activeSceneIndex = index
+            
+            // The game model change will trigger shareLocalGameState automatically
+            // through the game setter in this class
+            
+            print("Updated active scene to \(index) and shared with participants")
+        }
+    }
 }
