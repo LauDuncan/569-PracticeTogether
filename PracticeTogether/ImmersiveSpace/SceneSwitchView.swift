@@ -9,6 +9,7 @@ struct MenuButtonModel: Identifiable {
     let iconName: String
     let buttonType: MenuButtonType
     let horizontalPadding: CGFloat
+    let sceneNumber: Int? // Associated scene number (1-4)
 }
 
 // MARK: - Button Types
@@ -23,16 +24,19 @@ struct SceneSwitchView: View {
     @Environment(\.physicalMetrics) var converter
     @Environment(AppModel.self) var appModel
     
+    // Callback function to activate scenes
+    var activateScene: ((Int) -> Void)?
+    
     // Single source of truth for which button is currently selected
     @State private var selectedButtonIndex: Int? = nil
     
     // Define all buttons in a single array
     private let menuButtons: [MenuButtonModel] = [
-        MenuButtonModel(title: "Provide Oxygen", iconName: "arrow.clockwise", buttonType: .standard, horizontalPadding: 70),
-        MenuButtonModel(title: "Place Defibrillator Pads", iconName: "arrow.clockwise", buttonType: .standard, horizontalPadding: 35),
-        MenuButtonModel(title: "Set Defibrillation Energy", iconName: "arrow.clockwise", buttonType: .standard, horizontalPadding: 35),
-        MenuButtonModel(title: "Provide Defib Shock", iconName: "arrow.clockwise", buttonType: .standard, horizontalPadding: 50),
-        MenuButtonModel(title: "Debrief Room", iconName: "bubble.left.and.bubble.right.fill", buttonType: .debrief, horizontalPadding: 0)
+        MenuButtonModel(title: "Provide Oxygen", iconName: "arrow.clockwise", buttonType: .standard, horizontalPadding: 70, sceneNumber: 1),
+        MenuButtonModel(title: "Place Defibrillator Pads", iconName: "arrow.clockwise", buttonType: .standard, horizontalPadding: 35, sceneNumber: 2),
+        MenuButtonModel(title: "Set Defibrillation Energy", iconName: "arrow.clockwise", buttonType: .standard, horizontalPadding: 35, sceneNumber: 3),
+        MenuButtonModel(title: "Provide Defib Shock", iconName: "arrow.clockwise", buttonType: .standard, horizontalPadding: 50, sceneNumber: 4),
+        MenuButtonModel(title: "Debrief Room", iconName: "bubble.left.and.bubble.right.fill", buttonType: .debrief, horizontalPadding: 0, sceneNumber: nil)
     ]
 
     var body: some View {
@@ -88,7 +92,13 @@ struct SceneSwitchView: View {
         switch button.buttonType {
         case .standard:
             print("Standard action button tapped: \(button.title)")
-            // Add specific action logic here
+            
+            // Activate the associated scene if available
+            if let sceneNumber = button.sceneNumber {
+                activateScene?(sceneNumber)
+            }
+            
+            // Track completion
             appModel.completedScenarios += 1
             
         case .debrief:

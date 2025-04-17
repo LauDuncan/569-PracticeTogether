@@ -15,6 +15,7 @@
     "objectMetadataList" : [
       [
         "14D6E598-975A-46DC-B78E-2409CEFCECE4",
+        "SmoothConcrete",
         "Cylinder"
       ],
       {
@@ -23,7 +24,6 @@
       },
       [
         "14D6E598-975A-46DC-B78E-2409CEFCECE4",
-        "SmoothConcrete",
         "Cylinder"
       ],
       {
@@ -49,31 +49,16 @@
       [
         "1CBB146A-828E-4A08-9291-3C19B5C3889C",
         "Root",
-        "HospitalAmbient"
+        "SFX"
       ],
       {
-        "isExpanded" : false,
-        "isLocked" : false,
-        "selectedAudioFilePrim" : {
-          "string" : "\/Root\/SFX\/hospital_ambience_2_mp3"
-        }
+        "isExpanded" : true,
+        "isLocked" : false
       },
       [
         "1CBB146A-828E-4A08-9291-3C19B5C3889C",
         "Root",
         "CodeBlueAnnouncement"
-      ],
-      {
-        "isExpanded" : false,
-        "isLocked" : false,
-        "selectedAudioFilePrim" : {
-          "string" : "\/Root\/SFX\/code_blue_announcement_mp3"
-        }
-      },
-      [
-        "1CBB146A-828E-4A08-9291-3C19B5C3889C",
-        "Root",
-        "SpatialAudio"
       ],
       {
         "isExpanded" : false,
@@ -97,11 +82,14 @@
       [
         "1CBB146A-828E-4A08-9291-3C19B5C3889C",
         "Root",
-        "SFX"
+        "AmbientAudio"
       ],
       {
-        "isExpanded" : true,
-        "isLocked" : false
+        "isExpanded" : false,
+        "isLocked" : false,
+        "selectedAudioFilePrim" : {
+          "string" : "\/Root\/SFX\/hospital_ambience_2_mp3"
+        }
       },
       [
         "1CBB146A-828E-4A08-9291-3C19B5C3889C",
@@ -118,7 +106,19 @@
       [
         "1CBB146A-828E-4A08-9291-3C19B5C3889C",
         "Root",
-        "AmbientAudio"
+        "SpatialAudio"
+      ],
+      {
+        "isExpanded" : false,
+        "isLocked" : false,
+        "selectedAudioFilePrim" : {
+          "string" : "\/Root\/SFX\/code_blue_announcement_mp3"
+        }
+      },
+      [
+        "1CBB146A-828E-4A08-9291-3C19B5C3889C",
+        "Root",
+        "HospitalAmbient"
       ],
       {
         "isExpanded" : false,
@@ -137,8 +137,71 @@
       }
     ]
   },
+  "214D1C74-6CE8-421A-92C6-DA8B9C16C8ED" : {
+    "objectMetadataList" : [
+      [
+        "214D1C74-6CE8-421A-92C6-DA8B9C16C8ED",
+        "Root",
+        "SFX"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "214D1C74-6CE8-421A-92C6-DA8B9C16C8ED",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "214D1C74-6CE8-421A-92C6-DA8B9C16C8ED",
+        "Root",
+        "Scene1",
+        "Scene_1__starting_"
+      ],
+      {
+        "disallowsFraming" : false,
+        "isExpanded" : false,
+        "isLocked" : false
+      },
+      [
+        "214D1C74-6CE8-421A-92C6-DA8B9C16C8ED",
+        "Root",
+        "scene1",
+        "Scene_1__starting_"
+      ],
+      {
+        "disallowsFraming" : false,
+        "isExpanded" : false,
+        "isLocked" : false
+      },
+      [
+        "214D1C74-6CE8-421A-92C6-DA8B9C16C8ED",
+        "Root",
+        "AmbientAudio"
+      ],
+      {
+        "isExpanded" : false,
+        "isLocked" : false,
+        "selectedAudioFilePrim" : {
+          "string" : "\/Root\/SFX\/hospital_ambience"
+        }
+      }
+    ]
+  },
   "25B2DEDA-5FE4-4E78-8BCC-5DCA8B36E024" : {
     "objectMetadataList" : [
+      [
+        "25B2DEDA-5FE4-4E78-8BCC-5DCA8B36E024",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
       [
         "25B2DEDA-5FE4-4E78-8BCC-5DCA8B36E024",
         "Root",
@@ -147,9 +210,85 @@
       {
         "isExpanded" : true,
         "isLocked" : false
+      }
+    ]
+  },
+  "2A62117A-7CAD-4855-BD81-E6B75C81C17F" : {
+    "objectMetadataList" : [
+      [
+        "2A62117A-7CAD-4855-BD81-E6B75C81C17F",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
       },
       [
-        "25B2DEDA-5FE4-4E78-8BCC-5DCA8B36E024",
+        "2A62117A-7CAD-4855-BD81-E6B75C81C17F",
+        "Root",
+        "Scene_1__starting_"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "32534896-B27A-4D15-9C99-F9D75ED10382" : {
+    "objectMetadataList" : [
+      [
+        "32534896-B27A-4D15-9C99-F9D75ED10382",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "32534896-B27A-4D15-9C99-F9D75ED10382",
+        "Root",
+        "Scene_4__all_clear_"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "49D2D465-CB39-4F27-AD76-7681279FBD66" : {
+    "objectMetadataList" : [
+      [
+        "49D2D465-CB39-4F27-AD76-7681279FBD66",
+        "Root",
+        "Scene_3__pad_placed_"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "49D2D465-CB39-4F27-AD76-7681279FBD66",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "4FB1FD3D-626A-4CAF-BE87-74F8C01879D9" : {
+    "objectMetadataList" : [
+      [
+        "4FB1FD3D-626A-4CAF-BE87-74F8C01879D9",
+        "Root",
+        "Scene_2__airmask_on_"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "4FB1FD3D-626A-4CAF-BE87-74F8C01879D9",
         "Root"
       ],
       {
@@ -213,6 +352,48 @@
       }
     ]
   },
+  "72E42AC1-44F9-42FD-89A9-0D5F2348EE1E" : {
+    "objectMetadataList" : [
+      [
+        "72E42AC1-44F9-42FD-89A9-0D5F2348EE1E",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "72E42AC1-44F9-42FD-89A9-0D5F2348EE1E",
+        "Root",
+        "NewHalfRoom",
+        "blue_pin"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "72E42AC1-44F9-42FD-89A9-0D5F2348EE1E",
+        "Root",
+        "NewHalfRoom"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "72E42AC1-44F9-42FD-89A9-0D5F2348EE1E",
+        "Root",
+        "NewHalfRoom",
+        "blue_pin",
+        "Geom"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
   "91C1E678-43E1-4F02-A3B6-842EF606BB42" : {
     "objectMetadataList" : [
       [
@@ -247,8 +428,7 @@
       },
       [
         "AF09ED6F-1707-48FD-8720-65B998362C09",
-        "Root",
-        "Sphere_Left"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -256,6 +436,19 @@
       },
       [
         "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root",
+        "Sphere_Left"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "B9DF4EBE-1241-4207-83CB-4749442B0A6A" : {
+    "objectMetadataList" : [
+      [
+        "B9DF4EBE-1241-4207-83CB-4749442B0A6A",
         "Root"
       ],
       {
@@ -268,8 +461,7 @@
     "objectMetadataList" : [
       [
         "CB766F92-EE55-4A63-9401-E7B8C009764D",
-        "Root",
-        "GridMaterial"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -277,7 +469,8 @@
       },
       [
         "CB766F92-EE55-4A63-9401-E7B8C009764D",
-        "Root"
+        "Root",
+        "GridMaterial"
       ],
       {
         "isExpanded" : true,
@@ -294,7 +487,9 @@
     "objectMetadataList" : [
       [
         "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root"
+        "Root",
+        "GridMaterial",
+        "GridMaterial"
       ],
       {
         "isExpanded" : true,
@@ -302,9 +497,7 @@
       },
       [
         "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "GridMaterial",
-        "GridMaterial"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -316,23 +509,24 @@
     "objectMetadataList" : [
       [
         "DE0E382A-FA45-4367-80AB-B9D979482211",
-        "Root"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "DE0E382A-FA45-4367-80AB-B9D979482211",
         "Root",
-        "ChestCompression"
+        "HospitalAmbience"
       ],
       {
         "isExpanded" : false,
         "isLocked" : false,
         "selectedAudioFilePrim" : {
-          "string" : "\/Root\/SFX\/chest_compression_100bpm_mp3"
+          "string" : "\/Root\/SFX\/hospital_ambience_2_mp3"
         }
+      },
+      [
+        "DE0E382A-FA45-4367-80AB-B9D979482211",
+        "Root",
+        "SFX"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
       },
       [
         "DE0E382A-FA45-4367-80AB-B9D979482211",
@@ -349,23 +543,22 @@
       [
         "DE0E382A-FA45-4367-80AB-B9D979482211",
         "Root",
-        "SFX"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "DE0E382A-FA45-4367-80AB-B9D979482211",
-        "Root",
-        "HospitalAmbience"
+        "ChestCompression"
       ],
       {
         "isExpanded" : false,
         "isLocked" : false,
         "selectedAudioFilePrim" : {
-          "string" : "\/Root\/SFX\/hospital_ambience_2_mp3"
+          "string" : "\/Root\/SFX\/chest_compression_100bpm_mp3"
         }
+      },
+      [
+        "DE0E382A-FA45-4367-80AB-B9D979482211",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
       }
     ]
   }

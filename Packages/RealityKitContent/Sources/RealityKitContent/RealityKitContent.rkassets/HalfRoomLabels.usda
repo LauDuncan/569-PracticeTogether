@@ -1,0 +1,51 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (448.60.4)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root" (
+    customData = {
+        float3 rotationEulerHint = (0, 2.1816614, 0)
+    }
+)
+{
+    reorder nameChildren = ["NewHalfRoom", "NurseCPR"]
+    quatf xformOp:orient = (0.46174866, 0, 0.8870108, 0)
+    float3 xformOp:scale = (0.029999997, 0.029999997, 0.029999997)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+    def "NewHalfRoom" (
+        active = true
+        references = @NewHalfRoom.usdz@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Nurse_CPR_pressing" (
+            active = false
+        )
+        {
+        }
+    }
+
+    def "NurseCPR" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, -1.5707963, 0)
+        }
+        references = @Nurse CPR-pressing.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.70710677, 0, -0.7071067, 0)
+        float3 xformOp:scale = (0.5, 0.5, 0.5)
+        float3 xformOp:translate = (3.7678688, 0.212919, 1.0112892)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+}
+

@@ -180,6 +180,10 @@ final class SessionController {
         game.currentRoundEndTime = nil
         game.turnHistory.removeAll()
     }
+
+    func enterDebriefRoom() {
+        game.stage = .debrief
+    }
     
     func joinRole(_ role: PlayerModel.Role?) {
         localPlayer.role = role

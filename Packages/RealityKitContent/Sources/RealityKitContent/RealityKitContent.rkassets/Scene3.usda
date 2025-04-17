@@ -1,0 +1,75 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (448.60.4)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    def "Scene_3__pad_placed_" (
+        active = true
+        prepend references = @Scene-3 (pad placed).usdz@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Nurse_CPR_pressing"
+        {
+            float3 xformOp:translate = (3.77843, 0.23599155, 0.81108576)
+        }
+
+        over "PointLight" (
+            active = false
+        )
+        {
+        }
+
+        over "PointLight_1" (
+            active = false
+        )
+        {
+        }
+
+        over "PointLight_2" (
+            active = false
+        )
+        {
+        }
+
+        over "PointLight_3" (
+            active = false
+        )
+        {
+        }
+
+        over "PointLight_4" (
+            active = false
+        )
+        {
+        }
+
+        over "PointLight_5" (
+            active = false
+        )
+        {
+        }
+
+        over "TheWholeRoom" (
+            active = false
+        )
+        {
+        }
+
+        over "tv" (
+            active = false
+        )
+        {
+        }
+    }
+}
+

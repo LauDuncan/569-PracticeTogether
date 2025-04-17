@@ -46,6 +46,7 @@ struct ScenarioSelectionView: View {
         
         Button("Play", systemImage: "play") {
             appModel.sessionController?.enterRoleSelection()
+            // appModel.sessionController?.enterDebriefRoom()
         }
         .padding(.vertical)
     }

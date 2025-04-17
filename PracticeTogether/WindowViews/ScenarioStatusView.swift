@@ -40,6 +40,7 @@ struct ScenarioStatusView: View {
             }
             .frame(maxWidth: .infinity)
             
+            
             // Group {
             //     // Report the time remaining before, during, and after a round.
             //     if let currentRoundEndTime = appModel.sessionController?.game.currentRoundEndTime {

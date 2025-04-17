@@ -1,0 +1,286 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (448.60.4)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["AmbientAudio", "SFX", "Lights", "NewMedicalRoom", "scene1", "scene2", "scene3", "scene4"]
+    def "scene3" (
+        references = @Scene3.usda@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "scene4" (
+        references = @Scene4.usda@
+    )
+    {
+        reorder nameChildren = ["AmbientAudio", "Scene_4__all_clear_"]
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "scene2" (
+        references = @Scene2.usda@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "scene1" (
+        references = @Scene1.usda@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Xform "Lights" (
+        active = true
+    )
+    {
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Xform "PointLight"
+        {
+            float2 ui:nodegraph:node:pos = (20, 20)
+            int ui:nodegraph:node:stackingOrder = 1
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (1.8148339, 3.2487316, 1.6079824)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def RealityKitComponent "PointLight"
+            {
+                token info:id = "RealityKit.PointLight"
+            }
+        }
+
+        def Xform "PointLight_1"
+        {
+            float2 ui:nodegraph:node:pos = (40, 40)
+            int ui:nodegraph:node:stackingOrder = 2
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (1.8148339, 3.2487316, 2.8691301)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def RealityKitComponent "PointLight"
+            {
+                token info:id = "RealityKit.PointLight"
+            }
+        }
+
+        def Xform "PointLight_2"
+        {
+            float2 ui:nodegraph:node:pos = (60, 60)
+            int ui:nodegraph:node:stackingOrder = 3
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (1.8148339, 3.2487316, 4.1402235)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def RealityKitComponent "PointLight"
+            {
+                token info:id = "RealityKit.PointLight"
+            }
+        }
+
+        def Xform "PointLight_3"
+        {
+            float2 ui:nodegraph:node:pos = (80, 80)
+            int ui:nodegraph:node:stackingOrder = 4
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (4.4935164, 3.2487316, 4.1402235)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def RealityKitComponent "PointLight"
+            {
+                token info:id = "RealityKit.PointLight"
+            }
+        }
+
+        def Xform "PointLight_4"
+        {
+            float2 ui:nodegraph:node:pos = (100, 100)
+            int ui:nodegraph:node:stackingOrder = 5
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (4.4935164, 3.2487316, 3.1181097)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def RealityKitComponent "PointLight"
+            {
+                token info:id = "RealityKit.PointLight"
+            }
+        }
+
+        def Xform "PointLight_5"
+        {
+            float2 ui:nodegraph:node:pos = (120, 120)
+            int ui:nodegraph:node:stackingOrder = 6
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (4.4935164, 3.2487316, 2.0706153)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def RealityKitComponent "PointLight"
+            {
+                token info:id = "RealityKit.PointLight"
+            }
+        }
+    }
+
+    def "NewMedicalRoom" (
+        references = @NewMedicalRoom.usda@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+
+        over "Nurse_CPR_pressing" (
+            active = false
+        )
+        {
+        }
+
+        over "FULLNewRoom"
+        {
+            over "Patient" (
+                active = false
+            )
+            {
+            }
+
+            over "Storage_" (
+                active = false
+            )
+            {
+            }
+
+            over "Machine" (
+                active = false
+            )
+            {
+            }
+
+            over "tv" (
+                active = false
+            )
+            {
+            }
+
+            over "hospital_bed__1_" (
+                active = false
+            )
+            {
+            }
+
+            over "PointLight" (
+                active = false
+            )
+            {
+            }
+
+            over "PointLight_1" (
+                active = false
+            )
+            {
+            }
+
+            over "PointLight_2" (
+                active = false
+            )
+            {
+            }
+
+            over "PointLight_3" (
+                active = false
+            )
+            {
+            }
+
+            over "PointLight_4" (
+                active = false
+            )
+            {
+            }
+
+            over "PointLight_5" (
+                active = false
+            )
+            {
+            }
+        }
+    }
+
+    def Xform "AmbientAudio"
+    {
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "AmbientAudio"
+        {
+            float gain = 0
+            uniform token info:id = "RealityKit.AmbientAudio"
+        }
+    }
+
+    def Xform "SFX" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["chest_compression_100bpm_mp3", "code_blue_announcement_mp3", "defib_on_mp3", "hospital_ambience_1__needs_editing__mp3", "hospital_ambience", "oxygen_hiss_mp3"]
+        def RealityKitAudioFile "chest_compression_100bpm_mp3"
+        {
+            uniform asset file = @SFX/chest_compression_100bpm.mp3@
+            uniform bool shouldLoop = 0
+        }
+
+        def RealityKitAudioFile "code_blue_announcement_mp3"
+        {
+            uniform asset file = @SFX/code blue announcement.mp3@
+            uniform bool shouldLoop = 0
+        }
+
+        def RealityKitAudioFile "defib_on_mp3"
+        {
+            uniform asset file = @SFX/defib on.mp3@
+            uniform bool shouldLoop = 0
+        }
+
+        def RealityKitAudioFile "hospital_ambience_1__needs_editing__mp3"
+        {
+            uniform asset file = @SFX/hospital ambience 1 (needs editing).mp3@
+            uniform bool shouldLoop = 0
+        }
+
+        def RealityKitAudioFile "hospital_ambience"
+        {
+            uniform asset file = @SFX/hospital ambience 2.mp3@
+            uniform bool shouldLoop = 1
+            uniform bool shouldRandomizeStartTime = 1
+        }
+
+        def RealityKitAudioFile "oxygen_hiss_mp3"
+        {
+            uniform asset file = @SFX/oxygen hiss.mp3@
+            uniform bool shouldLoop = 0
+        }
+    }
+}
+

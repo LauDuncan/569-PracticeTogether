@@ -40,6 +40,7 @@ struct GameTemplate: SpatialTemplate {
     }
     
     static let playerPosition = Point3D(x: -2, z: 3)
+//    static let playerPosition = Point3D(x: 0, z: 0)
     
     /// An array that represents the order the game adds participants to spatial template positions.
     var elements: [any SpatialTemplateElement] {

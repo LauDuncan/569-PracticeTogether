@@ -36,6 +36,8 @@ struct RoleSelectionView: View {
                 }
             }
             
+            HalfRoomLabelView()
+            
             Button("Ready", systemImage: "checkmark") {
                 appModel.sessionController?.startGame()
             }
@@ -75,6 +77,7 @@ struct RoleList: View {
                 ForEach(playersInRole(role)) { player in
                     Text(player.name)
                         .fontWeight(player.id == appModel.sessionController?.localPlayer.id ? .bold : .regular)
+                        .foregroundStyle(role.color)
                 }
                 
                 // Show "Join" button if local player doesn't have this role
