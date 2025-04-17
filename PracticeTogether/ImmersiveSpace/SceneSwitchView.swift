@@ -32,10 +32,10 @@ struct SceneSwitchView: View {
     
     // Define all buttons in a single array
     private let menuButtons: [MenuButtonModel] = [
-        MenuButtonModel(title: "Provide Oxygen", iconName: "arrow.clockwise", buttonType: .standard, horizontalPadding: 70, sceneNumber: 1),
-        MenuButtonModel(title: "Place Defibrillator Pads", iconName: "arrow.clockwise", buttonType: .standard, horizontalPadding: 35, sceneNumber: 2),
-        MenuButtonModel(title: "Set Defibrillation Energy", iconName: "arrow.clockwise", buttonType: .standard, horizontalPadding: 35, sceneNumber: 3),
-        MenuButtonModel(title: "Provide Defib Shock", iconName: "arrow.clockwise", buttonType: .standard, horizontalPadding: 50, sceneNumber: 4),
+        MenuButtonModel(title: "Initiate Code Blue", iconName: "arrow.clockwise", buttonType: .standard, horizontalPadding: 70, sceneNumber: 1),
+        MenuButtonModel(title: "Place Oxygen Mask", iconName: "arrow.clockwise", buttonType: .standard, horizontalPadding: 35, sceneNumber: 2),
+        MenuButtonModel(title: "Place Defibrillator Pads", iconName: "arrow.clockwise", buttonType: .standard, horizontalPadding: 35, sceneNumber: 3),
+        MenuButtonModel(title: "Provide Shock, All Clear", iconName: "arrow.clockwise", buttonType: .standard, horizontalPadding: 50, sceneNumber: 4),
         MenuButtonModel(title: "Debrief Room", iconName: "bubble.left.and.bubble.right.fill", buttonType: .debrief, horizontalPadding: 0, sceneNumber: nil)
     ]
 

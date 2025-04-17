@@ -61,6 +61,7 @@ struct ScenarioManagementView: View {
                 guard let resource = try? await AudioFileResource(named: ambientAudioFileName, 
                     from: "SceneAll.usda", in: realityKitContentBundle) else {
                         print("Failed to load audio resource")
+                        return
                     }
 
                 let audioController = audioEntity?.prepareAudio(resource)
@@ -77,7 +78,7 @@ struct ScenarioManagementView: View {
                 animateNurseInScene(sceneNumber: 1)
                 
                 // Move the entire room further away from the origin
-                roomScene.position = SIMD3<Float>(0, 0, 0)
+                roomScene.position = SIMD3<Float>(-3.5, 0, 3)
             }
 
             if let switchViewEntity = attachments.entity(for: sceneSwitchViewID) {
@@ -86,6 +87,10 @@ struct ScenarioManagementView: View {
                     EntityIDComponent(id: sceneSwitchViewID)
                 )
                 content.add(switchViewEntity)
+            }
+
+            if let skybox = createSkybox() {
+                content.add(skybox)
             }
 
         } update: { content, attachments in
@@ -102,61 +107,25 @@ struct ScenarioManagementView: View {
         .frame(depth: 0)
     }
     
-    // Method to find ambient audio entity
-    func findAmbientAudio() {
-        guard let roomScene = rootScene else {
-            print("Root scene not available for audio search")
-            return
+
+    func createSkybox() -> Entity? {
+        let largeSphere = MeshResource.generateSphere(radius: 15)
+        var skyboxMaterial = UnlitMaterial()
+
+        do {
+            let texture = try TextureResource.load(named: "demobg2")
+            skyboxMaterial.color = .init(texture: .init(texture))
+        } catch {
+            print("Failed to create skybox material: \(error)")
+            return nil
         }
+
+        let skyboxEntity = Entity()
+        skyboxEntity.components.set(ModelComponent(mesh: largeSphere, materials: [skyboxMaterial]))
+        skyboxEntity.scale = .init(x: -1, y: 1, z: 1)
         
-        // Try to find AmbientAudio entity at root level
-        // audioEntity = roomScene.findEntity(named: "AmbientAudio")
-        // let ambientAudioFileName = "/Root/SFX/hospital_ambience"
-
-        // guard let resource = try? await AudioFileResource(named: ambientAudioFileName, 
-        //     from: "SceneAll.usda", in: realityKitContentBundle) else {
-        //         print("Failed to load audio resource")
-        //     }
-
-        // let audioController = audioEntity?.prepareAudio(resource)
-        // audioController?.play()
-
-
-        // if audioEntity != nil {
-            
-        // } else {
-        //     print("AmbientAudio entity not found")
-        // }
+        return skyboxEntity
     }
-    
-    // // Helper method to enable audio on an entity
-    // func enableEntityAudio(_ entity: Entity) {
-    //     print("Attempting to enable audio on \(entity.name)")
-        
-    //     // Get component names using reflection
-    //     let mirror = Mirror(reflecting: entity.components)
-    //     for child in mirror.children {
-    //         if let componentName = child.label, componentName.contains("Audio") {
-    //             print("Found audio component on \(entity.name): \(componentName)")
-                
-    //             // Make sure the entity is enabled so audio can play
-    //             entity.isEnabled = true
-    //             break
-    //         }
-    //     }
-        
-    //     // Check if this is an AudioEntity specifically
-    //     let entityDescription = String(describing: type(of: entity))
-    //     if entityDescription.contains("Audio") {
-    //         print("Entity \(entity.name) appears to be an audio entity type: \(entityDescription)")
-    //         entity.isEnabled = true
-    //     }
-        
-    //     // Enable all child entities too, one might contain the audio
-    //     for child in entity.children {
-    //         enableEntityAudio(child)
-    //     }
-    // }
     
     // Method to animate the nurse in the current scene
     func animateNurseInScene(sceneNumber: Int) {
@@ -246,8 +215,14 @@ struct ScenarioManagementView: View {
     func updatePodiumPose(_ phraseDeckPodium: Entity) {
         // Position the podium further away from the player
         // Original was just 0.6 units along x-axis
-        let podiumPosition = GameTemplate.playerPosition.translated(by: Vector3D(x: 0.6))
+        let podiumPosition = GameTemplate.playerPosition.translated(by: Vector3D(x: -0.6))
+        
+        // Rotate the podium 180 degrees around the Y axis
+        let rotationY = simd_quatf(angle: Float.pi, axis: SIMD3<Float>(0, 1, 0))
+        
+        // Apply position and rotation
         phraseDeckPodium.position = .init(podiumPosition)
+        phraseDeckPodium.orientation = rotationY
     }
 }
 

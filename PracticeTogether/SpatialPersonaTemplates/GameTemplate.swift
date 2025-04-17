@@ -39,12 +39,12 @@ struct GameTemplate: SpatialTemplate {
         case defibNurse
     }
     
-    static let playerPosition = Point3D(x: -2, z: 3)
+    static let playerPosition = Point3D(x: 1.7, z: 6)
 //    static let playerPosition = Point3D(x: 0, z: 0)
     
     /// An array that represents the order the game adds participants to spatial template positions.
     var elements: [any SpatialTemplateElement] {
-        let activeTeamCenterPosition: SpatialTemplateElementPosition = SpatialTemplateElementPosition.app.offsetBy(x: 2, z: 3)
+        let activeTeamCenterPosition: SpatialTemplateElementPosition = SpatialTemplateElementPosition.app.offsetBy(x: -1.7, z: 6)
 
         let playerSeat = SpatialTemplateSeatElement(
             position: .app.offsetBy(x: Self.playerPosition.x, z: Self.playerPosition.z),
@@ -59,18 +59,18 @@ struct GameTemplate: SpatialTemplate {
                 role: Role.defibNurse
             ),
             .seat(
-                position: activeTeamCenterPosition.offsetBy(x: 0, z: 0.5),
+                position: activeTeamCenterPosition.offsetBy(x: 0, z: -1.3),
                 direction: .lookingAt(playerSeat),
                 role: Role.airwayNurse
             )
         ]
         
         let audienceSeats: [any SpatialTemplateElement] = [
-            .seat(position: .app.offsetBy(x: 0, z: 5)),
-            .seat(position: .app.offsetBy(x: 1, z: 5)),
-            .seat(position: .app.offsetBy(x: -1, z: 5)),
-            .seat(position: .app.offsetBy(x: 2, z: 5)),
-            .seat(position: .app.offsetBy(x: -2, z: 5))
+            .seat(position: .app.offsetBy(x: 5, z: 0)),
+            .seat(position: .app.offsetBy(x: 5, z: 1)),
+            .seat(position: .app.offsetBy(x: 5, z: -1)),
+            .seat(position: .app.offsetBy(x: 5, z: 2)),
+            .seat(position: .app.offsetBy(x: 5, z: -2))
         ]
         
         return audienceSeats + [playerSeat] + activeTeamSeats

@@ -26,22 +26,30 @@ import SwiftUI
 /// ```
 struct ScenarioSelectionView: View {
     @Environment(AppModel.self) var appModel
+    let items = ["Code Blue", "Sepsis Alert Protocol", "Respiratory Distress", "Seizure Management", "Opioid Overdose", "Suicidal Intervention"]
+    @State private var selectedItem: String? = nil
     
     var body: some View {
         // Present the gameplay category options.
-        Form {
-            
-            Section {
-                Text("Code Blue")
-//                ForEach(PhraseManager.shared.categories, id: \.self) { category in
-//                    Toggle(category.description, isOn: isCategoryActive(category))
-//                }
-            } header: {
-                Text("Scenarios")
-            } footer: {
-                Text("Select the scenario you'd like to practice with.")
+        VStack {
+            Text("Select a Scenario")
+                .font(.headline)
+
+            ForEach(items, id: \.self) { item in
+                Button(action: {
+                    selectedItem = item
+                }) {
+                    Text(item)
+                        .padding()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(selectedItem == item ? Color.blue : Color.clear)
+                        .foregroundColor(selectedItem == item ? .white : .white)
+                        .cornerRadius(8)
+                }
+                .buttonStyle(PlainButtonStyle()) // Removes default button styling
             }
         }
+        .padding()
         .practiceTogetherToolbar()
         
         Button("Play", systemImage: "play") {

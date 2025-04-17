@@ -56,26 +56,26 @@ struct WelcomeView: View {
 struct WelcomeBanner: View {
     var body: some View {
         HStack(alignment: .center) {
-            Image(systemName: "figure.fishing")
+            Image(systemName: "syringe.fill")
                 .foregroundStyle(.cyan.gradient)
                 .scaleEffect(x: -1)
-            Image(systemName: "figure.climbing")
+            Image(systemName: "stethoscope.circle.fill")
                 .foregroundStyle(.yellow.gradient)
-            Image(systemName: "figure.badminton")
+            Image(systemName: "heart.text.clipboard.fill")
                 .foregroundStyle(.orange.gradient)
                 .scaleEffect(x: -1)
             
-            Image(systemName: "figure.run.square.stack.fill")
+            Image(systemName: "bolt.heart.fill")
                 .font(.system(size: 170))
-                .foregroundStyle(.purple.gradient)
+                .foregroundStyle(.red.gradient)
                 .offset(y: -20)
             
-            Image(systemName: "figure.archery")
-                .foregroundStyle(.red.gradient)
-            Image(systemName: "figure.play")
+            Image(systemName: "cross.case.fill")
+                .foregroundStyle(.purple.gradient)
+            Image(systemName: "thermometer.variable.and.figure.circle.fill")
                 .foregroundStyle(.green.gradient)
                 .scaleEffect(x: -1)
-            Image(systemName: "figure.surfing")
+            Image(systemName: "ivfluid.bag")
                 .foregroundStyle(.blue.gradient)
         }
         .font(.system(size: 50))
